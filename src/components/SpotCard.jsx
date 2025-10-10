@@ -1,6 +1,6 @@
 import React from "react";
 import { FaStar, FaStarHalfAlt, FaRegStar, FaPhotoVideo, FaVideo } from "react-icons/fa";
-
+import { useNavigate } from "react-router-dom";
 const SpotCard = ({
   title = "Flat Ground",
   location = "Greater Noida, India",
@@ -11,8 +11,14 @@ const SpotCard = ({
   image = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
   directions = "#",
 }) => {
+  const naviagte = useNavigate();
   return (
-    <div className="flex-shrink-0 w-80 bg-neutral-900 text-white border border-neutral-800 rounded-2xl overflow-hidden shadow-lg hover:-translate-y-1 hover:shadow-red-400/20 transition-all duration-300">
+    <div
+      onClick={() => {
+        naviagte("/spotcardpage/123");
+      }}
+      className="flex-shrink-0 w-80 bg-neutral-900 text-white border border-neutral-800 rounded-2xl overflow-hidden shadow-lg hover:-translate-y-1 hover:shadow-red-400/20 transition-all duration-300 cursor-pointer"
+    >
       <img
         src={image}
         alt={title}
@@ -29,12 +35,20 @@ const SpotCard = ({
         </div>
 
         <div className="flex items-center justify-start gap-4 text-gray-300 text-sm mb-2">
-          <span className="flex items-center gap-1"><FaPhotoVideo /> {photos}</span>
-          <span className="flex items-center gap-1"><FaVideo /> {videos}</span>
+          <span className="flex items-center gap-1">
+            <FaPhotoVideo /> {photos}
+          </span>
+          <span className="flex items-center gap-1">
+            <FaVideo /> {videos}
+          </span>
         </div>
 
         <div className="flex items-center gap-1 text-red-500 mb-3">
-          <FaStar /><FaStar /><FaStar /><FaStarHalfAlt /><FaRegStar />
+          <FaStar />
+          <FaStar />
+          <FaStar />
+          <FaStarHalfAlt />
+          <FaRegStar />
         </div>
 
         <a
