@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { useClerk, SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 
 const Navbar = ({ onHomeClick }) => {
@@ -11,6 +12,14 @@ const Navbar = ({ onHomeClick }) => {
     navigate("/addspot");
   };
 
+
+const Navbar = ({ onHomeClick,  onLoginClick }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const onAddSpotClick=() => {
+       navigate("/addspot");
+  }
   return (
     <nav className="sticky top-0 z-50 bg-neutral-950 text-white shadow-md">
       <div className="flex justify-between items-center px-6 py-3">
@@ -42,7 +51,10 @@ const Navbar = ({ onHomeClick }) => {
 
           {/* Logo */}
           <div
+
             onClick={() => navigate("/")}
+            onClick={()=>{navigate('/')}}
+
             className="text-lg font-bold uppercase tracking-wide cursor-pointer hover:text-red-500 transition-colors"
           >
             SkateSpot India
@@ -53,10 +65,17 @@ const Navbar = ({ onHomeClick }) => {
         <ul className="hidden md:flex items-center gap-8">
           <li>
             <button
+
               onClick={() => navigate("/community")}
               className="hover:text-red-500 transition-colors cursor-pointer"
             >
               Community
+
+              onClick={()=>navigate('/community')}
+              className="hover:text-red-500 transition-colors cursor-pointer"
+            >
+              community
+
             </button>
           </li>
           <li>

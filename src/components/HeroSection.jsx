@@ -3,8 +3,11 @@ import SearchBar from "./SearchBar";
 import NearbyButton from "./NearbyButton";
 import { useNavigate } from "react-router-dom";
 
+
 const HeroSection = () => {
   const navigate=useNavigate()
+
+const HeroSection = ({ onSearch, onNearby }) => {
   return (
     <section className="h-90 mt-4 mb-4 relative flex flex-col items-center justify-center text-center bg-neutral-950 text-white px-6 py-20 md:py-32">
       {/* === Background Glow / Accent === */}
