@@ -1,9 +1,13 @@
-// Navbar.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Navbar = ({ onHomeClick, onAddSpotClick, onLoginClick }) => {
+const Navbar = ({ onHomeClick,  onLoginClick }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
+  const onAddSpotClick=() => {
+       navigate("/addspot");
+  }
   return (
     <nav className="sticky top-0 z-50 bg-neutral-950 text-white shadow-md">
       <div className="flex justify-between items-center px-6 py-3">
@@ -35,7 +39,7 @@ const Navbar = ({ onHomeClick, onAddSpotClick, onLoginClick }) => {
 
           {/* Logo */}
           <div
-            onClick={onHomeClick}
+            onClick={()=>{navigate('/')}}
             className="text-lg font-bold uppercase tracking-wide cursor-pointer hover:text-red-500 transition-colors"
           >
             SkateSpot India
@@ -46,16 +50,16 @@ const Navbar = ({ onHomeClick, onAddSpotClick, onLoginClick }) => {
         <ul className="hidden md:flex items-center gap-8">
           <li>
             <button
-              onClick={onHomeClick}
-              className="hover:text-red-500 transition-colors"
+              onClick={()=>navigate('/community')}
+              className="hover:text-red-500 transition-colors cursor-pointer"
             >
-              Home
+              community
             </button>
           </li>
           <li>
             <button
               onClick={onAddSpotClick}
-              className="hover:text-red-500 transition-colors"
+              className="hover:text-red-500 transition-colors cursor-pointer"
             >
               Add Spot
             </button>

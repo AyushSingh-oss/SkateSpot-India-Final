@@ -1,6 +1,7 @@
 import React from "react";
 import SpotCard from "./SpotCard";
 
+
 const spots = [
   {
     title: "Flat Ground",
@@ -104,8 +105,9 @@ const spots = [
 ];
 
 const SpotList = () => {
+
   return (
-    <section className="py-10 bg-black">
+    <section  className="py-10 bg-black">
       <h2 className="text-2xl md:text-3xl font-bold text-center text-white mb-6">
         Nearby Skate Spots 🛹
       </h2>
