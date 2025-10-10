@@ -1,8 +1,15 @@
-// Navbar.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useClerk, SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 
-const Navbar = ({ onHomeClick, onAddSpotClick, onLoginClick }) => {
+const Navbar = ({ onHomeClick }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const { openSignIn, signOut } = useClerk();
+
+  const onAddSpotClick = () => {
+    navigate("/addspot");
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-neutral-950 text-white shadow-md">
@@ -35,7 +42,7 @@ const Navbar = ({ onHomeClick, onAddSpotClick, onLoginClick }) => {
 
           {/* Logo */}
           <div
-            onClick={onHomeClick}
+            onClick={() => navigate("/")}
             className="text-lg font-bold uppercase tracking-wide cursor-pointer hover:text-red-500 transition-colors"
           >
             SkateSpot India
@@ -46,28 +53,38 @@ const Navbar = ({ onHomeClick, onAddSpotClick, onLoginClick }) => {
         <ul className="hidden md:flex items-center gap-8">
           <li>
             <button
-              onClick={onHomeClick}
-              className="hover:text-red-500 transition-colors"
+              onClick={() => navigate("/community")}
+              className="hover:text-red-500 transition-colors cursor-pointer"
             >
-              Home
+              Community
             </button>
           </li>
           <li>
             <button
               onClick={onAddSpotClick}
-              className="hover:text-red-500 transition-colors"
+              className="hover:text-red-500 transition-colors cursor-pointer"
             >
               Add Spot
             </button>
           </li>
-          <li>
-            <button
-              onClick={onLoginClick}
-              className="hover:text-red-500 transition-colors"
-            >
-              Login
-            </button>
-          </li>
+
+          {/* === Auth Section === */}
+          <SignedOut>
+            <li>
+              <button
+                onClick={() => openSignIn({})}
+                className="hover:text-red-500 transition-colors cursor-pointer"
+              >
+                Login
+              </button>
+            </li>
+          </SignedOut>
+
+          <SignedIn>
+            <li className="flex items-center gap-3">
+              <UserButton />
+            </li>
+          </SignedIn>
         </ul>
       </div>
 
@@ -96,17 +113,27 @@ const Navbar = ({ onHomeClick, onAddSpotClick, onLoginClick }) => {
               Add Spot
             </button>
           </li>
-          <li>
-            <button
-              onClick={() => {
-                onLoginClick();
-                setMenuOpen(false);
-              }}
-              className="w-full text-left hover:text-red-500 transition-colors"
-            >
-              Login
-            </button>
-          </li>
+
+          {/* === Auth Buttons for Mobile === */}
+          <SignedOut>
+            <li>
+              <button
+                onClick={() => {
+                  openSignIn({});
+                  setMenuOpen(false);
+                }}
+                className="w-full text-left hover:text-red-500 transition-colors"
+              >
+                Login
+              </button>
+            </li>
+          </SignedOut>
+
+          <SignedIn>
+            <li className="flex items-center justify-between">
+              <UserButton/>
+            </li>
+          </SignedIn>
         </ul>
       )}
     </nav>
