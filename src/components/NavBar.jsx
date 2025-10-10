@@ -1,29 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { useClerk, SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 
 const Navbar = ({ onHomeClick }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const { openSignIn, signOut } = useClerk();
+  const { openSignIn } = useClerk();
 
   const onAddSpotClick = () => {
     navigate("/addspot");
   };
 
-
-const Navbar = ({ onHomeClick,  onLoginClick }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
-
-  const onAddSpotClick=() => {
-       navigate("/addspot");
-  }
   return (
     <nav className="sticky top-0 z-50 bg-neutral-950 text-white shadow-md">
       <div className="flex justify-between items-center px-6 py-3">
-        {/* === Left Section === */}
+        {/* Left Section */}
         <div className="flex items-center gap-3">
           {/* Hamburger (Mobile) */}
           <div
@@ -51,31 +42,21 @@ const Navbar = ({ onHomeClick,  onLoginClick }) => {
 
           {/* Logo */}
           <div
-
             onClick={() => navigate("/")}
-            onClick={()=>{navigate('/')}}
-
             className="text-lg font-bold uppercase tracking-wide cursor-pointer hover:text-red-500 transition-colors"
           >
             SkateSpot India
           </div>
         </div>
 
-        {/* === Desktop Nav Links === */}
+        {/* Desktop Links */}
         <ul className="hidden md:flex items-center gap-8">
           <li>
             <button
-
               onClick={() => navigate("/community")}
               className="hover:text-red-500 transition-colors cursor-pointer"
             >
               Community
-
-              onClick={()=>navigate('/community')}
-              className="hover:text-red-500 transition-colors cursor-pointer"
-            >
-              community
-
             </button>
           </li>
           <li>
@@ -87,7 +68,7 @@ const Navbar = ({ onHomeClick,  onLoginClick }) => {
             </button>
           </li>
 
-          {/* === Auth Section === */}
+          {/* Auth */}
           <SignedOut>
             <li>
               <button
@@ -98,7 +79,6 @@ const Navbar = ({ onHomeClick,  onLoginClick }) => {
               </button>
             </li>
           </SignedOut>
-
           <SignedIn>
             <li className="flex items-center gap-3">
               <UserButton />
@@ -107,14 +87,15 @@ const Navbar = ({ onHomeClick,  onLoginClick }) => {
         </ul>
       </div>
 
-      {/* === Mobile Dropdown === */}
+      {/* Mobile Dropdown */}
       {menuOpen && (
         <ul className="flex flex-col md:hidden bg-neutral-950 border-t border-red-500/20 px-6 py-3 animate-fadeIn space-y-3">
           <li>
             <button
               onClick={() => {
-                onHomeClick();
+                if (onHomeClick) onHomeClick();
                 setMenuOpen(false);
+                navigate("/");
               }}
               className="w-full text-left hover:text-red-500 transition-colors"
             >
@@ -133,7 +114,7 @@ const Navbar = ({ onHomeClick,  onLoginClick }) => {
             </button>
           </li>
 
-          {/* === Auth Buttons for Mobile === */}
+          {/* Auth Buttons for Mobile */}
           <SignedOut>
             <li>
               <button
@@ -150,7 +131,7 @@ const Navbar = ({ onHomeClick,  onLoginClick }) => {
 
           <SignedIn>
             <li className="flex items-center justify-between">
-              <UserButton/>
+              <UserButton />
             </li>
           </SignedIn>
         </ul>
