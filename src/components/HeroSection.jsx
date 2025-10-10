@@ -1,8 +1,11 @@
 import React from "react";
 import SearchBar from "./SearchBar";
 import NearbyButton from "./NearbyButton";
+import { useNavigate } from "react-router-dom";
 
 
+const HeroSection = () => {
+  const navigate=useNavigate()
 
 const HeroSection = ({ onSearch, onNearby }) => {
   return (
@@ -13,21 +16,22 @@ const HeroSection = ({ onSearch, onNearby }) => {
 
       {/* === Main Content === */}
       <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
-        Discover the Best <span className="text-red-500">Skate Spots</span> in India
+        Discover the Best <span className="text-red-500">Skate Spots</span> in
+        India
       </h1>
 
       <p className="text-gray-400 text-base md:text-lg max-w-2xl mb-8">
-        Explore, add, and share the coolest skateboarding spots across the country.  
-        Join the community that’s building India’s skate map 🛹
+        Explore, add, and share the coolest skateboarding spots across the
+        country. Join the community that’s building India’s skate map 🛹
       </p>
 
       {/* === Search Bar === */}
       <div className="w-full max-w-lg">
-        <SearchBar onSearch={onSearch} />
+        <SearchBar />
       </div>
 
       {/* === Nearby Button === */}
-      <NearbyButton onNearby={onNearby} />
+      <NearbyButton onNearby={() => navigate("/viewnearby")} />
     </section>
   );
 };

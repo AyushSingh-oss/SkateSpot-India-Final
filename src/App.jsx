@@ -9,20 +9,47 @@ import SpotCardPage from "./pages/SpotCardPage";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Community from "./pages/Community";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <>
       <Navbar />
+
       <Routes>
-        <Route path="/" element={<Home/>}/>
+        {/* Public Routes */}
+        <Route path="/" element={<Home />} />
         <Route path="/searchspot" element={<SearchSpot />} />
-        <Route path="/addspot" element={<AddSpot />} />
         <Route path="/viewnearby" element={<ViewNearby />} />
-        <Route path="/spotcardpage/:id" element={<SpotCardPage/>} />
-        <Route path="/contact" element={<Contact/>} />
-        <Route path="/about" element={<About/>} />
-        <Route path="/community" element={<Community />} />
+        <Route path="/spotcardpage/:id" element={<SpotCardPage />} />
+        <Route path="/about" element={<About />} />
+
+        {/* Protected Routes */}
+        <Route
+          path="/contact"
+          element={
+            <ProtectedRoute>
+              <Contact />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/addspot"
+          element={
+            <ProtectedRoute>
+              <AddSpot />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/community"
+          element={
+            <ProtectedRoute>
+              <Community />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
 
       <Footer />
