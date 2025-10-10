@@ -1,7 +1,9 @@
 import React from "react";
 import { FaInstagram, FaYoutube, FaFacebook, FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <footer className="mt-4 bg-neutral-950 text-gray-300 py-10 px-6 border-t border-neutral-800">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
@@ -19,9 +21,9 @@ const Footer = () => {
           <h3 className="text-lg font-semibold text-white mb-3">Quick Links</h3>
           <ul className="space-y-2 text-sm">
             <li><a href="#" className="hover:text-red-500 transition">Home</a></li>
-            <li><a href="#" className="hover:text-red-500 transition">Add Spot</a></li>
+            <li onClick={() => navigate("/addspot")}><a href="#" className="hover:text-red-500 transition">Add Spot</a></li>
             <li><a href="#" className="hover:text-red-500 transition">Nearby Spots</a></li>
-            <li><a href="#" className="hover:text-red-500 transition">Community</a></li>
+            <li onClick={() => navigate("/community")}><a href="#" className="hover:text-red-500 transition">Community</a></li>
           </ul>
         </div>
 

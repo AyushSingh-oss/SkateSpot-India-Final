@@ -1,7 +1,9 @@
 import React from "react";
 import { FaStar, FaStarHalfAlt, FaRegStar, FaPhotoVideo, FaVideo } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+
 const SpotCard = ({
+  id = 123, // Add id to navigate dynamically
   title = "Flat Ground",
   location = "Greater Noida, India",
   distance = "4 km",
@@ -9,14 +11,11 @@ const SpotCard = ({
   photos = 12,
   videos = 4,
   image = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-  directions = "#",
 }) => {
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
+
   return (
     <div
-      onClick={() => {
-        naviagte("/spotcardpage/123");
-      }}
       className="flex-shrink-0 w-80 bg-neutral-900 text-white border border-neutral-800 rounded-2xl overflow-hidden shadow-lg hover:-translate-y-1 hover:shadow-red-400/20 transition-all duration-300 cursor-pointer"
     >
       <img
@@ -51,14 +50,13 @@ const SpotCard = ({
           <FaRegStar />
         </div>
 
-        <a
-          href={directions}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block text-center bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg transition"
+        {/* Navigate internally instead of opening a new tab */}
+        <button
+          onClick={() => navigate(`/spotcardpage/${id}`)}
+          className="w-full text-center bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg transition"
         >
           View Details
-        </a>
+        </button>
       </div>
     </div>
   );
