@@ -10,3 +10,16 @@
 .scrollbar-thin::-webkit-scrollbar-track {
   background-color: #171717;
 }
+
+
+/* Tailwind custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #ef4444; /* red-500 */
+  border-radius: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}

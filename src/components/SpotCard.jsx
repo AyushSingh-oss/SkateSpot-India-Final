@@ -43,7 +43,7 @@ const SpotCard = ({
           rel="noopener noreferrer"
           className="block text-center bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg transition"
         >
-          Get Directions
+          View Details
         </a>
       </div>
     </div>
