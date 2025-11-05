@@ -25,7 +25,7 @@ const Navbar = ({ onHomeClick }) => {
           >
             <span
               className={`block h-[3px] w-full bg-red-500 rounded transition-all duration-300 ${
-                menuOpen ? "rotate-45 translate-y-[6px]" : ""
+                menuOpen ? "rotate-45 translate-y-[9px]" : ""
               }`}
             />
             <span
